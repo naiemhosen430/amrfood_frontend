@@ -14,6 +14,7 @@ export default function Page() {
   } = useForm();
   const { dispatch } = useContext(AuthContex);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -27,7 +28,8 @@ export default function Page() {
         // Handle non-200 responses
       }
     } catch (error) {
-      console.error("Error during registration:", error);
+      console.log("Error during registration:", error);
+      setErrorMessage(error?.message);
       // Manage error state
     } finally {
       setLoading(false);
@@ -40,6 +42,9 @@ export default function Page() {
         <Typography component="h1" variant="h5" className="mb-4 text-center">
           Register
         </Typography>
+        {errorMessage && (
+          <div className="text-center text-red-950 p-4">{errorMessage}</div>
+        )}
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             fullWidth
