@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Primary Color */
+.primary-green {
+  color: #4caf50; /* Fresh Green */
+}
+
+.background-color {
+  background-color: #a5d6a7; /* Light Green */
+}
+.light-color {
+  color: #a5d6a7; /* Light Green */
+}
+
+/* Secondary Color */
+.secondary-orange {
+  color: #ff9800; /* Warm Orange */
+}
+
+.background-light-beige {
+  background-color: #ffe0b2; /* Light Beige */
+}
+
+/* Accent Color */
+.dark {
+  color: #333333; /* Dark Gray */
+}
+
+.bg-dark {
+  background-color: #333333; /* Dark Gray */
+}
