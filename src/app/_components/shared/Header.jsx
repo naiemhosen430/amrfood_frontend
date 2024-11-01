@@ -18,9 +18,9 @@ export default function Header() {
 
             <Link
               className="dark p-3 px-5 text-[20px] font-[600]"
-              href={"/about"}
+              href={"/register"}
             >
-              Contact
+              Be a seller
             </Link>
           </div>
         </div>

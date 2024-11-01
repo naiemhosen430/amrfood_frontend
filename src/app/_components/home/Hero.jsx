@@ -17,7 +17,7 @@ export default function Hero() {
         <div className="text-center mt-5">
           <Link
             className="text-[20px] rounded-full border-[#333333] dark border-2 px-8 py-2"
-            href={"/contact"}
+            href={"/register"}
           >
             Be a seller
           </Link>
