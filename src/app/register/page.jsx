@@ -45,9 +45,9 @@ export default function Page() {
             fullWidth
             margin="normal"
             label="Name"
-            {...register("name", { required: true })}
-            error={!!errors.name}
-            helperText={errors.name ? "Name is required" : ""}
+            {...register("fullname", { required: true })}
+            error={!!errors.fullname}
+            helperText={errors.fullname ? "Name is required" : ""}
           />
           <TextField
             fullWidth
