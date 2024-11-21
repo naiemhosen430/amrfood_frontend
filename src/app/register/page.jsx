@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { AuthContex } from "@/context/AuthContex"; // Ensure the context is correctly defined
 import { postApiCall } from "@/api/fatchData";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const {
@@ -12,6 +14,7 @@ export default function Page() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
   const { dispatch } = useContext(AuthContex);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,6 +23,7 @@ export default function Page() {
     setLoading(true);
     try {
       const response = await postApiCall(`auth/register`, data);
+      console.log(response?.statusCode);
       if (response?.statusCode === 200) {
         setCookie("accesstoken", response?.token);
         dispatch({ type: "ADD_AUTH_DATA", payload: response?.data || null });

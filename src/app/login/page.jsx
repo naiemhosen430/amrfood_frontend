@@ -1,19 +1,40 @@
 "use client";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Button, Typography, Paper, Container } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { postApiCall } from "@/api/fatchData";
+import { setCookie } from "cookies-next";
+import { AuthContex } from "@/context/AuthContex";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const {
-    register, // Change this from login to register
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
+  const { dispatch } = useContext(AuthContex);
+  const router = useRouter();
 
   const onSubmit = async (data) => {
-    // Call your API for login
-    console.log("Login data:", data);
+    setLoading(true);
+    try {
+      const response = await postApiCall(`auth/login`, data);
+      if (response?.statusCode === 200) {
+        setCookie("accesstoken", response?.token);
+        dispatch({ type: "ADD_AUTH_DATA", payload: response?.data || null });
+        router.push("/dashboard", { scroll: true });
+      } else {
+      }
+    } catch (error) {
+      console.log("Error during registration:", error);
+      setErrorMessage(error?.message);
+      // Manage error state
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
